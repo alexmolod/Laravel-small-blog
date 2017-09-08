@@ -9,8 +9,9 @@
 	<hr>
 				
 
-		@if (Auth::user()->id == $post->user_id)		
-		<form action="{{ url('/posts/'.$post->id) }}" method="POST">
+		@if (Auth::check())
+          @if (Auth::user()->id == $post->user_id)
+               <form action="{{ url('/posts/'.$post->id) }}" method="POST">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
 
@@ -18,6 +19,7 @@
                 <i class="fa fa-trash"></i> Delete
             </button>
         </form>
+        @endif
         @endif
     </div>
  @endsection
